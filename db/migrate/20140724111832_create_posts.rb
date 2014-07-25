@@ -3,8 +3,9 @@ class CreatePosts < ActiveRecord::Migration
     create_table :posts do |t|
       t.string :title
       t.text :content
+      t.belongs_to :category
       t.belongs_to :user
-      t.boolean :is_publish, :default => true
+      t.boolean :is_active, :default => true
       t.timestamps
     end
   end
