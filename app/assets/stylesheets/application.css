@@ -28,6 +28,46 @@
 .devise_errors h2 {
   font-size:14px;
 }
+
 body {
   background-color:Lavender;
+}
+
+.header {
+  height:205px;
+  background-color:PeachPuff;
+  margin-top:-7px;  
+}
+
+.header_link {
+  height:36px;
+  float:right;
+}
+
+.header_image{
+
+  height:154px;
+  width:648px;
+}
+.header_flash_message {
+  color:blue;
+  height:30px;
+  margin-top:-4px;
+}
+
+.header_link_for_controller
+{
+  float:left;
+}
+
+.header_link_to
+{
+  color:Sienna;
+  font-weight:bold;
+  margin-left:40px;
+  font-size:16px;
+}
+a {
+  color:CornflowerBlue;
+  font-weight:bold;
 }
