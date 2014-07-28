@@ -1,23 +1,43 @@
 class PostsController < ApplicationController
   layout :is_admin
 
+  # This action show all post and create a new post class instance.
   def index
+    @posts = Post.all
+    @post = Post.new
   end
 
-  def new
-  end
-
+  # This action add a new record in posts table.
   def create
-  end
-
-  def edit
-  end
-
-  def destroy
-  end
-
-  private
-    def is_admin
-      current_user.admin? ? "admin" : "application"
+    @post = current_user.posts.new(post_params)
+    if @post.save
+      flash[:notice] = "Post successfully created"
+      redirect_to posts_url
+    else
+     render "new"
     end
+  end
+
+  # This action show a post information
+  def show
+    @post = Post.find(params[:id])
+    @comment = Comment.new
+    @comments = @post.comments
+  end
+
+  # This action delete a record from posts table
+  def destroy
+    @post = Post.find(params[:id]).destroy
+    redirect_to posts_url
+  end
+
+  # This action permit accessible attributes
+  def post_params
+    params.require(:post).permit(:title, :content, :user_id)
+  end
+
+  # This action give layout name for normal user or admin
+  def is_admin
+    current_user.admin? ? "admin" : "application"
+  end
 end
