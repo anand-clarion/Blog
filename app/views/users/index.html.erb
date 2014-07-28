@@ -1,0 +1,6 @@
+<% @users.each_with_index do |user, n| %>
+  <%= n+1 %>
+  <%= link_to user.name, user %>
+  <%= user.city %>
+  <br>
+<% end %>
