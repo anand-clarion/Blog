@@ -16,6 +16,17 @@
     <p><b><%= @post.content %> </b></p>
   </div>
 </div>
+<% if can? :manage, @post %>
+  <div class = "show_view">
+    <div class = "new_post_header">
+      <p><b>Admin Actions</b><p>
+    </div>
+    <div class = "show_view_content">
+      <%= button_to :destroy, post_path(@post), :method => :delete %>
+      <button id = "active_button" value = "<%= @post.id %>" table = "<%= @post.class %>" ><%=check_activation_status(@post.id, @post.class) %></button>
+    </div>
+  </div>
+<% end %>
 
 <div class ="comment_on_post">
   <div class = "new_post_header">
@@ -36,6 +47,10 @@
   </div>
     <% @comments.each do |comment| %><hr>
       <%= link_to User.find(comment.user_id).name, User.find(comment.user_id) %> <span id="comment_span"><%= time_ago_in_words(comment.created_at) %> ago</span><br>
-      <%= comment.content %>
+      <%= comment.content %><br>
+      <% if can? :manage, comment %>
+        <span id = "comment_span"><%= link_to "destroy", comment_path(comment), :method => :delete %></span>
+        <span id ="comment_span"> <button class = "active_button_comment" id = "comment<%= comment.id %>" value = "<%= comment.id %>" table = "<%= comment.class %>" ><%=check_activation_status(comment.id, comment.class) %></button></span>
+      <% end %>
     <% end %>
 </div>
