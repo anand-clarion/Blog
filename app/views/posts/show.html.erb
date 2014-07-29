@@ -1,5 +1,4 @@
 <center><h5> This Post is wrote by - <%= @post.user.name %> </h5></center>
-
 <div class = "show_view">
   <div class = "new_post_header">
     <p><b>Title</b><p>
@@ -17,6 +16,7 @@
     <p><b><%= @post.content %> </b></p>
   </div>
 </div>
+
 <% if can? :manage, @post %>
   <div class = "show_view">
     <div class = "new_post_header">
@@ -46,6 +46,7 @@
       </div>
     <% end %>
   </div>
+
   <% @comments.each do |comment| %><hr>
     <%= link_to User.find(comment.user_id).name, User.find(comment.user_id) %> <span id="comment_span"><%= time_ago_in_words(comment.created_at) %> ago</span><br>
     <%= comment.content %><br>
@@ -54,4 +55,5 @@
       <span id ="comment_span"> <button class = "active_button_comment" id = "comment<%= comment.id %>" value = "<%= comment.id %>" table = "<%= comment.class %>" ><%=check_activation_status(comment.id, comment.class) %></button></span>
     <% end %>
   <% end %>
+
 </div>
