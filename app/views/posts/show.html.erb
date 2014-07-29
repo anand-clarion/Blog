@@ -1,4 +1,4 @@
-<center><h5> This Post is wrote by - <%= @post.user.name %> </h5></center>
+<center><h3> This Post is wrote by - <%= @post.user.name %> </h3></center>
 <div class = "show_view">
   <div class = "new_post_header">
     <p><b>Title</b><p>
@@ -52,8 +52,7 @@
     <%= comment.content %><br>
     <% if can? :manage, comment %>
       <span id = "comment_span"><%= link_to "destroy", comment_path(comment), :method => :delete %></span>
-      <span id ="comment_span"> <button class = "active_button_comment" id = "comment<%= comment.id %>" value = "<%= comment.id %>" table = "<%= comment.class %>" ><%=check_activation_status(comment.id, comment.class) %></button></span>
+      <span id ="comment_span"> <button class = "active_button_class" id = "comment<%= comment.id %>" value = "<%= comment.id %>" table = "<%= comment.class %>" ><%=check_activation_status(comment.id, comment.class) %></button></span>
     <% end %>
   <% end %>
-
 </div>

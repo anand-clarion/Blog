@@ -1,6 +1,4 @@
 class PostsController < ApplicationController
-  layout :is_admin
-
   # This action show all post and create a new post class instance.
   def index
     @posts = Post.all
@@ -25,6 +23,10 @@ class PostsController < ApplicationController
     @comments = @post.comments
   end
 
+  def edit
+    exit
+  end
+
   # This action delete a record from posts table
   def destroy
     @post = Post.find(params[:id]).destroy
@@ -36,8 +38,4 @@ class PostsController < ApplicationController
     params.require(:post).permit(:title, :content, :user_id)
   end
 
-  # This action give layout name for normal user or admin
-  def is_admin
-    current_user.admin? ? "admin" : "application"
-  end
 end

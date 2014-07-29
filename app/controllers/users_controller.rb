@@ -10,7 +10,6 @@ class UsersController < ApplicationController
   end
 
   def show
-    render :text => "hello you are in show action"
     @user = User.find(params[:id])
   end
 

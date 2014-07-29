@@ -1,2 +1,24 @@
-<h1>Categories#new</h1>
-<p>Find me in app/views/categories/new.html.erb</p>
+<center><div class = "category_index">
+  <div class ="new_post_header">
+    <p><b>New Category</b></p>
+  </div>
+  <%= form_for @category do |f| %>
+    <% if @category.errors.any? %>
+      <div class="error_explanation">
+        <span><b>Errors</b></span>
+        <ul>
+          <% @category.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+    <div>
+      <%= f.label :name %>
+      <%= f.text_field :name %>
+    </div><br>
+    <div>
+      <%= f.submit %>
+    </div>
+  <% end %>
+</div></center>

@@ -1,2 +1,14 @@
-<h1>Categories#index</h1>
-<p>Find me in app/views/categories/index.html.erb</p>
+<center><div class = "category_index">
+  <div class ="new_post_header">
+    <p><b>Categories List</b></p>
+  </div>
+  <% @categories.each_with_index do |category, n| %>
+    <div class = "category_type">
+      <div class ="category_name"><%= n+1 %></div>
+      <div class ="category_name"><%= category.name %></div>
+      <div class ="category_name"><span><%= button_to :destroy, category_path(category), :method => :delete , confirm: "Are you sure?" %></span></div>
+      <div class= "category_name"><span><button class = "active_button_class" id = "category<%= category.id %>"  value = "<%= category.id %>" table = "<%= category.class %>" ><%=check_activation_status(category.id, category.class) %></button></span></div>
+    </div>
+  <% end %>
+  <%= link_to "New Category", new_category_path %>
+</div></center>
