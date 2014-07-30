@@ -21,4 +21,12 @@ class UsersController < ApplicationController
 
   def destroy
   end
+
+  def search
+    @school = Array.new
+    @school << User.search(params[:search])
+    @school << Post.search(params[:search])
+    @school << Category.search(params[:search])
+    @school << Comment.search(params[:search])
+  end
 end

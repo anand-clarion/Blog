@@ -7,19 +7,31 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-  <% flash.each do |name, msg| %>
-    <%= content_tag :div, msg, class: name %>
-  <% end %>
-
-  <% if user_signed_in? %>
-    Signed in as <%= current_user.name %>
-    <%= link_to 'Edit profile', edit_user_registration_path %>|
-    <%= link_to "Sign out", destroy_user_session_path,:method => :delete %>
-  <% else %>
-    <%= link_to "Login", new_user_session_path %>
-  <% end %>
-
+  <div class = "header">
+    <div class = "header_flash_message">
+      <% flash.each do |name, msg| %>
+        <%= content_tag :div, msg, class: name %>
+      <% end %>
+    </div>
+    <% if user_signed_in? %>
+      <div class = "header_link_for_controller" >
+        <%= link_to "user", users_path, :class => "header_link_to" %>
+        <%= link_to "Post", posts_path,  :class => "header_link_to" %>
+        <% if current_user.admin? %>
+          <%= link_to "Post category", categories_path, :class => "header_link_to" %>
+        <% end %>
+      </div>
+      <div class = "header_link" >
+        Signed in as <%= current_user.name %>
+        <%= link_to 'Edit profile', edit_user_registration_path, :class => "header_link_to" %>
+        <%= link_to "Sign out", destroy_user_session_path,:method => :delete, :class => "header_link_to" %>
+      </div>
+    <% else %>
+      <div class = "header_link" >
+        <%= link_to "Login", new_user_session_path, :class => "header_link_to" %>
+      </div>
+    <% end %>
+  </div>
   <%= yield %>
-
 </body>
 </html>

@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  mount Bootsy::Engine => '/bootsy', as: 'bootsy'
   devise_for :users
   resources :posts
   resources :comments
@@ -12,6 +13,11 @@ Rails.application.routes.draw do
   get "/deactivate" => "application#deactivate"
   get "/activate" => "application#activate"
 
+  resources :users do
+    collection do
+      post 'search'
+    end
+  end
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 

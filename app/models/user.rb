@@ -5,4 +5,11 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
   has_many :posts
   has_many :comments
+
+
+  def self.search(search)
+    if search
+       where("name like ? OR city like ? OR created_at like ?", "%#{search}%","%#{search}%","%#{search}%") 
+    end
+  end
 end

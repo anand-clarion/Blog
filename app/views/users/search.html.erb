@@ -1,0 +1,19 @@
+<h5> search result for <%= params[:search] %> </h5>
+
+<% @school.each do |a| %>
+  <% a.each do |b|  %>
+    <h3><%= b.class %></h3>
+    <% if b.class == User %>
+      <%= b.name %><br>
+      <%= b.city %><br>
+      <%= b.email %>
+    <% elsif b.class == Category %>
+      <%= b.name %>
+    <% else %>
+      <%= b.title %>
+      <%= b.content %>
+    <% end %>
+    <%= b.id %><br>
+  <% end %>
+<% end %>
+

@@ -1,0 +1,4 @@
+<%= @user.name %>
+<% if can? :manage ,@user %>
+  <button id = "active_button" value = "<%= @user.id %>" table = "<%= @user.class %>" ><%=check_activation_status(@user.id, @user.class) %></button>
+<% end %>

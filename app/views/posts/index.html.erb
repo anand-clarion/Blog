@@ -1,3 +1,8 @@
+<%= form_tag (search_users_path) do %>  
+  <%= text_field_tag :search, params[:search], placeholder: "Search" %> 
+  <%= submit_tag "Search", :name => nil %>     
+<% end %>
+
 <div class = "new_post_form">
   <div class = "new_post_header">
     <p><b>Hello <u><%= current_user.name %></u> What's on your mind<b></p>
@@ -10,11 +15,15 @@
       </div><br>
       <div>
         <%= f.label :content %><br>
-        <%= f.text_field :content,:placeholder => "Write your thought", :size => 25 %>
+        <%= f.bootsy_area :content,:placeholder => "Write your thought", :size => 25 %>
       </div><br>
       <div>
         <%= f.hidden_field :user_id, :value => "current_user.id" %>
       </div>
+      <div>
+        <%= f.label :category_id %><br>
+        <%= f.collection_select(:category_id, Category.all, :id, :name) %>
+      </div><br>
       <div>
         <%= f.submit %>
       </div>
