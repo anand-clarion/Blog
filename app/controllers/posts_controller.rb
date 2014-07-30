@@ -35,7 +35,7 @@ class PostsController < ApplicationController
 
   # This action permit accessible attributes
   def post_params
-    params.require(:post).permit(:title, :content, :user_id)
+    params.require(:post).permit(:title, :content, :user_id, :category_id, :bootsy_image_gallery_id)
   end
 
 end
