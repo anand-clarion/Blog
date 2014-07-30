@@ -10,8 +10,10 @@
  * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
  * file per style scope.
  *
+ *= require bootstrap.min
  *= require_tree .
  *= require_self
+ *= require bootsy
  */
 .error_explanation {
   color:red;
@@ -30,12 +32,12 @@
 }
 
 body {
-  background-color:Lavender;
+  background-color:Gainsboro;
 }
 
 .header {
-  height:205px;
-  background-color:PeachPuff;
+  height:100px;
+  background-color:#474747;
   margin-top:-7px;  
 }
 
@@ -44,29 +46,28 @@ body {
   float:right;
 }
 
-.header_image{
+.header_image {
 
   height:154px;
   width:648px;
 }
 .header_flash_message {
-  color:blue;
+  color:white;
   height:30px;
   margin-top:-4px;
 }
 
-.header_link_for_controller
-{
+.header_link_for_controller {
   float:left;
 }
 
-.header_link_to
-{
-  color:Sienna;
+.header_link_to {
+  color:white;
   font-weight:bold;
   margin-left:40px;
   font-size:16px;
 }
+
 a {
   color:CornflowerBlue;
   font-weight:bold;
