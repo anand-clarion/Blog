@@ -11,9 +11,9 @@
  * file per style scope.
  *
  *= require bootstrap.min
+ *= require jquery-ui
  *= require_tree .
  *= require_self
- *= require bootsy
  */
 .error_explanation {
   color:red;
@@ -35,6 +35,10 @@ body {
   background-color:Gainsboro;
 }
 
+.yield_container {
+  padding:20px;
+}
+
 .header {
   height:100px;
   background-color:#474747;
@@ -44,6 +48,8 @@ body {
 .header_link {
   height:36px;
   float:right;
+  margin-top:-19px;
+  margin-right:20px;
 }
 
 .header_image {
@@ -54,11 +60,12 @@ body {
 .header_flash_message {
   color:white;
   height:30px;
-  margin-top:-4px;
+  padding:10px;
 }
 
 .header_link_for_controller {
   float:left;
+  margin-top:30px;
 }
 
 .header_link_to {
@@ -71,4 +78,21 @@ body {
 a {
   color:CornflowerBlue;
   font-weight:bold;
+}
+
+.search_form {
+  float:right;
+  margin-top:30px;
+  margin-right:-247px;
+}
+
+#signed_in_as {
+  color:white;
+  font-weight:bold;
+}
+
+.login_page {
+  background-color:white;
+  height:400px;
+  width:500px;
 }

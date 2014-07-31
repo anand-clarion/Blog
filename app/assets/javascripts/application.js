@@ -12,11 +12,28 @@
 //
 //= require bootstrap.min
 //= require jquery
+//= require ckeditor/init
 //= require jquery_ujs
-//= require bootsy
+//= require jquery.turbolinks
+//= require jquery-ui
 //= require turbolinks
 //= require_tree .
 $(document).on('ready page:load', function () {
+  
+  $("#ckeditor_span").click(function () {
+    if ($("#ckeditor_span").text() == "Show Editor") {
+      $('#ckeditor_span').text("Hide Editor")
+      $("#ckeditor").show();
+      $("#normal_field").hide();
+      $("input[id=post_content]").attr('disabled','disabled');
+    }
+    else {
+      $('#ckeditor_span').text("Show Editor")
+      $("#ckeditor").hide();
+      $("#normal_field").show();
+      $("input[id=post_content]").attr('disabled', false);
+    }
+  });
 
   $(function() {
     $("#active_button").on("click", function() {
