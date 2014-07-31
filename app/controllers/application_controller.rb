@@ -12,6 +12,7 @@ class ApplicationController < ActionController::Base
     @deactivate = params[:table_name].constantize .find(params[:id])
     @deactivate.is_active = 0
     @deactivate.save
+    UserMailer.account_deactivated(@deactivate).deliver
     redirect_to posts_url
   end
 
@@ -20,6 +21,7 @@ class ApplicationController < ActionController::Base
     @activate = params[:table_name].constantize.find(params[:id])
     @activate.is_active = 1
     @activate.save
+    UserMailer.account_activated(@activate).deliver
     redirect_to posts_url
   end
 end

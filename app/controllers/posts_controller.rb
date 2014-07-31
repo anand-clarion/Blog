@@ -1,8 +1,12 @@
 class PostsController < ApplicationController
   # This action show all post and create a new post class instance.
   def index
-    @posts = Post.all
     @post = Post.new
+    if current_user.admin?
+      @posts = Post.all
+    else
+      @posts = Post.where(is_active: 1)
+    end
   end
 
   # This action add a new record in posts table.
@@ -20,7 +24,11 @@ class PostsController < ApplicationController
   def show
     @post = Post.find(params[:id])
     @comment = Comment.new
-    @comments = @post.comments
+    if current_user.admin?
+      @comments = @post.comments
+    else
+      @comments = @post.comments.where(is_active: 1)
+    end
   end
 
   def edit

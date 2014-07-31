@@ -1,7 +1,19 @@
-<% @users.each_with_index do |user, n| %>
-  <%= n+1 %>
-  <%= link_to user.name, user %>
-  <%= user.city %>
-  
-  <br>
-<% end %>
+<center>
+  <h3> Users List </h3>
+  <div class = "user_show">
+    <table>
+      <tr>
+        <th>Sr. No</th>
+        <th>User Name</th>
+        <th>View profile</th>
+      </tr>
+      <% @users.each_with_index do |user, n| %>
+        <tr>
+          <td><%= n+1 %></td>
+          <td><%= user.name%></td>
+          <td><%= link_to "Show", user_path(user) %></td>
+        </tr>
+      <% end %>
+    </table>
+  </div>
+</center>

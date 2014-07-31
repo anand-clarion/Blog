@@ -2,13 +2,19 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+table {border-collapse: collapse; width:100% }
+table td, th {border: 2px groove}
+th { padding: 10px; }
+td { padding: 10px; }
+
 .new_post_form {
-  height:350px;
+  min-height:452px;
   float:left;
   margin:10px;
   background-color:white;
   width:400px;
   border: solid 2px Gainsboro;
+  overflow:scroll;
 }
 
 .latest_post {
@@ -29,7 +35,7 @@
 
 .new_post_form_for {
   height:150px;
-  padding:55px;
+  padding:20px;
 }
 
 .show_view {
@@ -52,12 +58,18 @@
 .comment_on_post {
   clear:both;
   min-height:250px;
-  width:300px;
+  width:250px;
   background-color:white;
+  
 }
 
 #comment_span {
   margin-left:24px;
   font-size:12px;
   color:red;
+}
+
+#ckeditor_span {
+  color:DarkSlateGray;
+  margin-left:235px;
 }

@@ -1,6 +1,10 @@
 class UsersController < ApplicationController
   def index
-    @users = User.all
+    if current_user.admin?
+      @users = User.all
+    else
+      @users = User.where(is_active: 1)
+    end
   end
 
   def new
@@ -20,6 +24,8 @@ class UsersController < ApplicationController
   end
 
   def destroy
+    @user = User.find(params[:id]).destroy
+    redirect_to users_url
   end
 
   def search

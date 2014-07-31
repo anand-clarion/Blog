@@ -14,17 +14,23 @@
       <% end %>
     </div>
     <% if user_signed_in? %>
+      <div class = "header_link" >
+        <span id = "signed_in_as">Signed in as <%= current_user.name %></span>
+        <%= link_to 'Edit profile', edit_user_registration_path, :class => "header_link_to" %>
+        <%= link_to "Sign out", destroy_user_session_path,:method => :delete, :class => "header_link_to" %>
+      </div>
       <div class = "header_link_for_controller" >
-        <%= link_to "user", users_path, :class => "header_link_to" %>
+        <%= link_to "User", users_path, :class => "header_link_to" %>
         <%= link_to "Post", posts_path,  :class => "header_link_to" %>
         <% if current_user.admin? %>
           <%= link_to "Post category", categories_path, :class => "header_link_to" %>
         <% end %>
       </div>
-      <div class = "header_link" >
-        Signed in as <%= current_user.name %>
-        <%= link_to 'Edit profile', edit_user_registration_path, :class => "header_link_to" %>
-        <%= link_to "Sign out", destroy_user_session_path,:method => :delete, :class => "header_link_to" %>
+        <div class = "search_form">
+          <%= form_tag (search_users_path) do %>  
+            <%= text_field_tag :search, params[:search], placeholder: "Search" %> 
+            <%= submit_tag "Search", :name => nil %>     
+          <% end %>
       </div>
     <% else %>
       <div class = "header_link" >
@@ -32,6 +38,9 @@
       </div>
     <% end %>
   </div>
-  <%= yield %>
+  <%= yield :javascript_includes %> 
+  <div class = "yield_container">  
+    <%= yield %>
+  </div>
 </body>
 </html>

@@ -1,19 +1,20 @@
-<h5> search result for <%= params[:search] %> </h5>
-
+<h3> search result for <%= params[:search] %> </h3>
 <% @school.each do |a| %>
   <% a.each do |b|  %>
     <h3><%= b.class %></h3>
     <% if b.class == User %>
-      <%= b.name %><br>
-      <%= b.city %><br>
-      <%= b.email %>
+      Name : <%= link_to b.name, "#{b.id}" %><br>
+      City :<%= b.city %><br>
+      Email :<%= b.email %>
     <% elsif b.class == Category %>
-      <%= b.name %>
+      Name : <%= link_to b.name, category_path("#{b.id}") %>
+    <% elsif b.class == Post %>
+      Title : <%= link_to b.title, post_path("#{b.id}") %>
+      <br>
+      Content : <%= b.content.html_safe %>
     <% else %>
-      <%= b.title %>
-      <%= b.content %>
+      Content : <%= link_to b.content, post_path("#{b.post_id}") %>
     <% end %>
-    <%= b.id %><br>
   <% end %>
 <% end %>
 

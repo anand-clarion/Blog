@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  mount Bootsy::Engine => '/bootsy', as: 'bootsy'
+  post '/rate' => 'rater#create', :as => 'rate'
   devise_for :users
   resources :posts
   resources :comments
