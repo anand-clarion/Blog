@@ -31,12 +31,16 @@
 
 <div class ="comment_on_post">
   <div class = "new_post_header">
+    <p><b>Rating</b><p>
+  </div>
+  <center><%= rating_for @post, "title" %></center>
+  <div class = "new_post_header">
     <p><b>Comment</b><p>
   </div>
   <div class = "show_view_content">
     <%= form_for @comment do |f| %>
       <div>
-        <%= f.label :content %>
+        <%= f.label :content %><br>
         <%= f.text_field :content, :size => 20 %>
         <%= f.hidden_field :post_id,  :value => @post.id %>
         <%= f.hidden_field :user_id, :value => current_user.id%>

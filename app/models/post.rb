@@ -1,5 +1,5 @@
 class Post < ActiveRecord::Base
-  include Bootsy::Container
+  letsrate_rateable :title
   belongs_to :user
   has_many :comments
   def self.search(search)
