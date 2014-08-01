@@ -20,6 +20,13 @@
 //= require_tree .
 $(document).on('ready page:load', function () {
   
+ $(function() {
+    var availableTags = $("#auto_holder").val().split(",");
+    $( "#search" ).autocomplete({
+      source: availableTags
+    });
+  });
+
   $("#ckeditor_span").click(function () {
     if ($("#ckeditor_span").text() == "Show Editor") {
       $('#ckeditor_span').text("Hide Editor")
