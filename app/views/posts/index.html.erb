@@ -1,52 +1,24 @@
-<div class = "new_post_form">
-  <div class = "new_post_header">
-    <p><b>Hello <u><%= current_user.name %></u> What's on your mind<b></p>
-  </div>
-  <div class = "new_post_form_for">
-    <%= form_for @post do |f| %>
-      <div>
-        <%= f.label :title %><br>
-        <%= f.text_field :title, :placeholder => "Give a Title to your thought", :size => 25 %>
-      </div><br>
-      <span id ="ckeditor_span">Show Editor</span>
-      <div id = "ckeditor" style = "display:none" >
-        <%= f.label :content %><br>
-        <%= f.cktext_area :content,:placeholder => "Write your thought", :size => 25 %>
-      </div>
-      <div id = "normal_field">
-        <%= f.label :content %><br>
-        <%= f.text_field :content,:placeholder => "Write your thought", :size => 25, disabled: false, status: "enable" %>
-      </div>
-      <div>
-        <%= f.hidden_field :user_id, :value => "current_user.id" %>
-      </div>
-      <div>
-        <%= f.label :category_id %><br>
-        <%= f.collection_select(:category_id, Category.all, :id, :name) %>
-      </div><br>
-      <div>
-        <%= f.submit %>
-      </div>
-    <% end %>
-  </div>
-</div>
-
-<div class = "latest_post">
-  <h4> Latest Post </h4>
-  <table>
-    <tr>
-      <th>Sr.No</th>
-      <th>Post Title</th>
-      <th>Post Author</th>
-    </tr>
+<div class = "post_view_container">
+  <% if @posts.empty? %>
+    <h4>No post created Till now </h4>
+  <% else %>
+    <h3 id ="h3_for_post_heading"> Latest Post</h3>
     <% @posts.each_with_index do |post, n| %>
-      <tr>
-        <td> <%= n+1 %></td>
-        <td><%= link_to post.title, post %></td>
-        <td><%= post.user.name %></td>
-      </tr>
+      <div class="latest_post">
+        <h3><b><%= link_to post.title, post_path(post) %></b></h3>
+        <span> By - <%= link_to post.user.name, user_path(post.user.id) %> <span><%= time_ago_in_words(post.created_at) %> ago</span></span>
+        <div class = "post_comment_count"> Comment :<%= post.comments.count %></div>
+        <hr>
+        <%= post.content.lines.first %>....
+        <div class = "post_read_more" >
+          <%= link_to "read more >> ", post_path(post) %>
+        </div>
+      </div>
     <% end %>
-  </table>
+  <% end %>
 </div>
 
+<div class = "post_second_container_for_index">
+  <%= image_tag "blog_icon.png" %>
+</div>
 

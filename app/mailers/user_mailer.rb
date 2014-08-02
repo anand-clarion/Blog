@@ -8,7 +8,7 @@ class UserMailer < ActionMailer::Base
     mail(to: @user.email, subject: 'Welcome to My Awesome Site')
   end
 
-  # This action send a email to user after user account activation
+  # This action send a email to user after user account activation.
   def account_activated(user)
     @user = user
     @url  = 'http://blog.com/login'

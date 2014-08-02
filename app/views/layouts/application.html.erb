@@ -9,6 +9,7 @@
 <body>
   <div class = "header">
     <div class = "header_flash_message">
+      <h3>BLOG.COM</h3>
       <% flash.each do |name, msg| %>
         <%= content_tag :div, msg, class: name %>
       <% end %>
@@ -21,16 +22,19 @@
       </div>
       <div class = "header_link_for_controller" >
         <%= link_to "User", users_path, :class => "header_link_to" %>
-        <%= link_to "Post", posts_path,  :class => "header_link_to" %>
+        <%= link_to "Create Post", new_post_path,  :class => "header_link_to" %>
+        <%= link_to "Post Index", posts_path, :class => "header_link_to" %>
         <% if current_user.admin? %>
           <%= link_to "Post category", categories_path, :class => "header_link_to" %>
         <% end %>
       </div>
-        <div class = "search_form">
-          <%= form_tag (search_users_path) do %>  
-            <%= text_field_tag :search, params[:search], placeholder: "Search" %> 
-            <%= submit_tag "Search", :name => nil %>     
-          <% end %>
+      <div class = "search_form">
+        <% all_data = table_data() %>
+        <%= form_tag (search_users_path) do %>  
+        <%= hidden_field_tag :auto_holder, "#{ all_data.join(",") }" %>
+          <%= text_field_tag :search, params[:search], placeholder: "Search" %> 
+          <%= submit_tag "Search", :name => nil %>     
+        <% end %>
       </div>
     <% else %>
       <div class = "header_link" >

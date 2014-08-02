@@ -1,62 +1,44 @@
-<center><h3> This Post is wrote by - <%= @post.user.name %> </h3></center>
-<div class = "show_view">
-  <div class = "new_post_header">
-    <p><b>Title</b><p>
+<center><h3 id ="h3_for_post_heading"> This Post is wrote by - <%= @post.user.name %> </h3></center>
+<div class = "post_view_container">
+  <div class="latest_post">
+    <h3><%= link_to @post.title, post_path(@post) %></h3>
+    <span> By - <%= link_to @post.user.name, user_path(@post.user.id) %> <span><%= time_ago_in_words(@post.created_at) %> ago</span></span>
+    <div class = "post_comment_count"> Comment :<%= @post.comments.count %></div>
+    <hr>
+    <%= @post.content %>
   </div>
-  <div class = "show_view_content">
-    <p><b><%= @post.title %> </b></p>
+
+  <div class ="post_comment_container">
+    <div class = "post_header">
+      <p><b>Rating</b><p>
+    </div>
+    <center><%= rating_for @post, "title" %></center>
+    <div class = "post_header">
+      <p><b>Comment</b><p>
+    </div>
+    <div class = "comments">
+      <%= form_for @comment do |f| %>
+        <div>
+          <%= f.text_field :content, :size => 20, placeholder: "comment" %>
+          <%= f.hidden_field :post_id,  :value => @post.id %>
+          <%= f.hidden_field :user_id, :value => current_user.id%>
+        </div>
+        <div>
+          <%= f.submit %>
+        </div>
+      <% end %>
+      <% @comments.each do |comment| %>
+        <%= link_to User.find(comment.user_id).name, User.find(comment.user_id) %> <span id="comment_span"><%= time_ago_in_words(comment.created_at) %> ago</span><br>
+        <%= comment.content %><br>
+        <% if can? :manage, comment %>
+          <span id = "comment_span"><%= link_to "destroy", comment_path(comment), :method => :delete %></span>
+          <span id ="comment_span"> <button class = "active_button_class" id = "comment<%= comment.id %>" value = "<%= comment.id %>" table = "<%= comment.class %>" ><%=check_activation_status(comment.id, comment.class) %></button></span>
+        <% end %><hr>
+      <% end %>
+    </div>
   </div>
 </div>
 
-<div class = "show_view_post_content" > 
-  <div class ="new_post_header">
-    <p><b>Content</b></p>
-  </div>
-  <div class = "show_view_content">
-    <p><b><%= @post.content.html_safe %> </b></p>
-  </div>
-</div>
-
-<% if can? :manage, @post %>
-  <div class = "show_view">
-    <div class = "new_post_header">
-      <p><b>Admin Actions</b><p>
-    </div>
-    <div class = "show_view_content">
-      <%= button_to :destroy, post_path(@post), :method => :delete %>
-      <button id = "active_button" value = "<%= @post.id %>" table = "<%= @post.class %>" ><%=check_activation_status(@post.id, @post.class) %></button>
-    </div>
-  </div>
-<% end %>
-
-<div class ="comment_on_post">
-  <div class = "new_post_header">
-    <p><b>Rating</b><p>
-  </div>
-  <center><%= rating_for @post, "title" %></center>
-  <div class = "new_post_header">
-    <p><b>Comment</b><p>
-  </div>
-  <div class = "show_view_content">
-    <%= form_for @comment do |f| %>
-      <div>
-        <%= f.label :content %><br>
-        <%= f.text_field :content, :size => 20 %>
-        <%= f.hidden_field :post_id,  :value => @post.id %>
-        <%= f.hidden_field :user_id, :value => current_user.id%>
-      </div>
-      <div>
-        <%= f.submit %>
-      </div>
-    <% end %>
-  </div>
-
-  <% @comments.each do |comment| %>
-    <%= link_to User.find(comment.user_id).name, User.find(comment.user_id) %> <span id="comment_span"><%= time_ago_in_words(comment.created_at) %> ago</span><br>
-    <%= comment.content %><br>
-    <% if can? :manage, comment %>
-      <span id = "comment_span"><%= link_to "destroy", comment_path(comment), :method => :delete %></span>
-      <span id ="comment_span"> <button class = "active_button_class" id = "comment<%= comment.id %>" value = "<%= comment.id %>" table = "<%= comment.class %>" ><%=check_activation_status(comment.id, comment.class) %></button></span>
-    <% end %><hr>
-  <% end %>
+<div class = "post_second-container">
+ <%= image_tag "new2.jpg" %>
 </div>

@@ -1,5 +1,5 @@
 class RaterController < ApplicationController
-
+  # This action create a rating for post
   def create
     if user_signed_in?
       obj = params[:klass].classify.constantize.find(params[:id])

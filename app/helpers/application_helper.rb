@@ -12,9 +12,10 @@ module ApplicationHelper
 
   # This action fetch data from all tables for autocomplete functionlity
   def table_data() 
-    all_data  = User.all.collect{ |a|  [ a.name, a.city] }.flatten.uniq
-    all_data << Post.all.collect{ |a|  [ a.title] }.flatten.uniq
-    all_data << Comment.all.collect{ |a|  [ a.content] }.flatten.uniq
-    return all_data.flatten
+    all_data  = User.all.collect{ |a|  [ a.name.strip, a.city.strip] }.flatten.uniq
+    all_data << Post.all.collect{ |a|  [ a.title.strip] }.flatten.uniq
+    all_data << Comment.all.collect{ |a|  [ a.content.strip] }.flatten.uniq
+    puts "#{all_data}"
+    return all_data.flatten.uniq
   end
 end

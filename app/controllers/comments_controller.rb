@@ -5,6 +5,7 @@ class CommentsController < ApplicationController
   def new
   end
 
+  # This actoin add a new record in comments table.
   def create
     @comment = Comment.new(comment_params)
     if @comment.save
@@ -20,6 +21,7 @@ class CommentsController < ApplicationController
   def update
   end
 
+  # This action delete a record from comments table.
   def destroy
     @comment = Comment.find(params[:id])
     if @comment.destroy
@@ -29,6 +31,7 @@ class CommentsController < ApplicationController
     end
   end
 
+  # This action permit accessible attribute for comment model.
   def comment_params
     params.require(:comment).permit(:content, :user_id, :post_id)
   end

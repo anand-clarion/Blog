@@ -1,20 +1,29 @@
-<h3> search result for <%= params[:search] %> </h3>
-<% @school.each do |a| %>
-  <% a.each do |b|  %>
-    <h3><%= b.class %></h3>
-    <% if b.class == User %>
-      Name : <%= link_to b.name, "#{b.id}" %><br>
-      City :<%= b.city %><br>
-      Email :<%= b.email %>
-    <% elsif b.class == Category %>
-      Name : <%= link_to b.name, category_path("#{b.id}") %>
-    <% elsif b.class == Post %>
-      Title : <%= link_to b.title, post_path("#{b.id}") %>
-      <br>
-      Content : <%= b.content.html_safe %>
-    <% else %>
-      Content : <%= link_to b.content, post_path("#{b.post_id}") %>
-    <% end %>
+<div class ="search_view">
+  <% if (@school[0].empty? && @school[1].empty? && @school[2].empty?) %>
+    <h3> No record found for "<%= params[:search] %>" </h3>
+  <% else %>
+    <h4>Result found for "<%= params[:search] %>"</h4>
+    <table>  
+      <% @school.each do |a| %>
+        <% a.each do |b| %>
+          <% if b.class == User %>
+            <tr>
+              <th>USER</th>
+              <td>Name : <%= link_to b.name, "#{b.id}" %></td>
+            </tr>
+          <% elsif b.class == Post %>
+            <tr>
+              <th>POST</th>
+              <td>Title : <%= link_to b.title, post_path("#{b.id}") %></td>          
+            </tr>
+          <% else %>
+            <tr>
+              <th>COMMENT</th>
+              <td>Content : <%= link_to b.content, post_path("#{b.post_id}") %></td>
+            </tr>
+          <% end %>
+        <% end %>
+      <% end %>
+    </table>
   <% end %>
-<% end %>
-
+</div>

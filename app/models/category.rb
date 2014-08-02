@@ -1,8 +1,4 @@
 class Category < ActiveRecord::Base
-  validates :name, presence: true, uniqueness: true
-  def self.search(search)
-    if search
-       where("name like ?", "%#{search}%") 
-    end
-  end
+  has_many :posts, dependent:  :destroy
+  validates :name, presence: true, uniqueness: true, length: { minimum: 5 }
 end

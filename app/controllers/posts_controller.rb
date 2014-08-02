@@ -1,12 +1,17 @@
 class PostsController < ApplicationController
+  
   # This action show all post and create a new post class instance.
-  def index
-    @post = Post.new
+  def index 
     if current_user.admin?
-      @posts = Post.all
+      @posts = Post.all.order(created_at: :desc)
     else
-      @posts = Post.where(is_active: 1)
+      @posts = Post.where(is_active: 1).order(created_at: :desc)
     end
+  end
+
+  # This action create a new instance of post class
+  def new
+    @post = Post.new 
   end
 
   # This action add a new record in posts table.
@@ -16,7 +21,7 @@ class PostsController < ApplicationController
       flash[:notice] = "Post successfully created"
       redirect_to posts_url
     else
-     render "new"
+      render "new"
     end
   end
 
@@ -43,7 +48,7 @@ class PostsController < ApplicationController
 
   # This action permit accessible attributes
   def post_params
-    params.require(:post).permit(:title, :content, :user_id, :category_id, :bootsy_image_gallery_id)
+    params.require(:post).permit(:title, :content, :user_id, :category_id)
   end
 
 end

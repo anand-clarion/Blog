@@ -1,11 +1,12 @@
 class User < ActiveRecord::Base
-  # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable and :omniauthable
   letsrate_rater
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
-  has_many :posts
-  has_many :comments
+  has_many :posts, dependent: :destroy
+  has_many :comments, dependent: :destroy
+  validates :name, length: { minimum: 5 }
+  validates :phone_no, length: { is: 10 , message: "Please Enter a valid 10 digit phone_no" }
+  validates :city, length: { minimum: 5 }
 
   def self.search(search)
     if search
@@ -14,7 +15,7 @@ class User < ActiveRecord::Base
   end
 
   def active_for_authentication?
-    super && self.is_active # i.e. super && self.is_active
+    super && self.is_active
   end
 
   def inactive_message
