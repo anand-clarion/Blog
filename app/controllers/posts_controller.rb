@@ -3,7 +3,7 @@ class PostsController < ApplicationController
   # This action show all post and create a new post class instance.
   def index 
     if current_user.admin?
-      @posts = Post.all.order(created_at: :desc)
+      @posts = Post.all.order(created_at: :desc).paginate(:page => params[:page], :per_page => 3)
     else
       @posts = Post.where(is_active: 1).order(created_at: :desc)
     end

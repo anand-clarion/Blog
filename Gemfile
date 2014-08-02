@@ -44,3 +44,4 @@ gem 'thumbs_up', git: 'https://github.com/bouchard/thumbs_up.git', ref: 'f499a7c
 gem 'jquery-turbolinks'
 gem 'ckeditor'
 gem 'jquery-ui-rails'
+gem 'will_paginate', '~> 3.0'
