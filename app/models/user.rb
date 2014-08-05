@@ -8,16 +8,19 @@ class User < ActiveRecord::Base
   validates :phone_no, length: { is: 10 , message: "Please Enter a valid 10 digit phone_no" }
   validates :city, length: { minimum: 5 }
 
+  # This action search for matched data in table for user search 
   def self.search(search)
     if search
       where("name like ? OR city like ? ", "%#{search}%","%#{search}%")
     end
   end
 
+  # This action prohibited dectivated user from login
   def active_for_authentication?
     super && self.is_active
   end
 
+  # This action set a message for deactivated user.
   def inactive_message
     "Sorry, this account has been deactivated. Please contact to Admin"
   end

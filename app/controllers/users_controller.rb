@@ -3,27 +3,15 @@ class UsersController < ApplicationController
   # This action show users list.
   def index
     if current_user.admin?
-      @users = User.all
+      @users = User.where('id != ?', current_user.id)
     else
-      @users = User.where(is_active: 1)
+      @users = User.where(is_active: 1).where('id != ?', current_user.id)
     end
-  end
-
-  def new
-  end
-
-  def create
   end
 
   # This action Show an user's information.
   def show
     @user = User.find(params[:id])
-  end
-
-  def edit
-  end
-
-  def update
   end
 
   # This action delete a record from users table.

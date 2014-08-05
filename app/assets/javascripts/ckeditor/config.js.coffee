@@ -1,7 +1,7 @@
 CKEDITOR.editorConfig = (config) ->
   config.language = "en"
-  config.width = "300"
-  config.height = "50"
+  config.width = "550"
+  config.height = "90"
   true
   config.toolbar = 'Full';
  

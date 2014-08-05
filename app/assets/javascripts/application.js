@@ -10,43 +10,29 @@
 // Read Sprockets README (https://github.com/sstephenson/sprockets#sprockets-directives) for details
 // about supported directives.
 //
-//= require bootstrap.min
 //= require jquery
 //= require ckeditor/init
 //= require jquery_ujs
 //= require jquery.turbolinks
+//= require bootstrap.min
 //= require jquery-ui
 //= require turbolinks
 //= require_tree .
+
 $(document).on('ready page:load', function () {
   
- $(function() {
+  $(function() {
     var availableTags = $("#auto_holder").val().split(",");
     $( "#search" ).autocomplete({
       source: availableTags
     });
   });
 
-  $("#ckeditor_span").click(function () {
-    if ($("#ckeditor_span").text() == "Show Editor") {
-      $('#ckeditor_span').text("Hide Editor")
-      $("#ckeditor").show();
-      $("#normal_field").hide();
-      $("input[id=post_content]").attr('disabled','disabled');
-    }
-    else {
-      $('#ckeditor_span').text("Show Editor")
-      $("#ckeditor").hide();
-      $("#normal_field").show();
-      $("input[id=post_content]").attr('disabled', false);
-    }
-  });
-
   $(function() {
     $("#active_button").on("click", function() {
       var id = $('#active_button').val();
       var table_name = $('#active_button').attr("table");
-      if ($("#active_button").text() == "deactivate") {
+      if($("#active_button").text() == "deactivate") {
         $('#active_button').text("activate")
         deactivate(id, table_name) 
       }
@@ -64,7 +50,7 @@ $(document).on('ready page:load', function () {
       var button_id = $(this).attr('id'); 
       var id =  $("#"+button_id).val();
       var table_name =  $("#"+button_id).attr("table");
-      if ($("#"+button_id).text() == "deactivate") {
+      if($("#"+button_id).text() == "deactivate") {
         $("#"+button_id).text("activate")
         deactivate(id, table_name) 
       }

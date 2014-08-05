@@ -1,8 +1,12 @@
 class CommentsController < ApplicationController
-  def index
-  end
-
-  def new
+  
+  # This action show all comments of a post
+  def show
+    if current_user.admin?
+      @comments = Comment.where(post_id: params[:id]).paginate(:page => params[:page], :per_page => 3)
+    else
+      @comments = Comment.where(post_id: params[:id]).where(is_active: 1).paginate(:page => params[:page], :per_page => 3)
+    end
   end
 
   # This actoin add a new record in comments table.
@@ -11,14 +15,9 @@ class CommentsController < ApplicationController
     if @comment.save
       redirect_to posts_url
     else
-      render :text => "Hey something gonna wrong"
+      flash[:notice] = "comment can't submit empty"
+      redirect_to posts_url
     end
-  end
-
-  def edit
-  end
-
-  def update
   end
 
   # This action delete a record from comments table.
