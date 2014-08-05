@@ -7,7 +7,7 @@
       <div class="latest_post">
         <h3><b><%= link_to post.title, post_path(post) %></b></h3>
         <span> By - <%= link_to post.user.name, user_path(post.user.id) %> <span><%= time_ago_in_words(post.created_at) %> ago</span></span>
-        <div class = "post_comment_count"> Comment :<%= post.comments.count %></div>
+        <div class = "post_comment_count"> Comment :<%= post.comments.where(is_active: 1).count %></div>
         <hr>
         <div> <%= post.content.html_safe[0, 200] %>....</div>
         <div class = "post_read_more" >
@@ -15,7 +15,7 @@
         </div>
       </div>
     <% end %>
-  <% end %>
+  <% end %> 
   <%= will_paginate @posts %>
 </div>
 

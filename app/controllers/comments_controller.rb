@@ -13,6 +13,8 @@ class CommentsController < ApplicationController
   def create
     @comment = Comment.new(comment_params)
     if @comment.save
+      flash[:notice] = "Your comment successfully created and send to admin for moderation"
+      UserMailer.comment_create(@comment).deliver
       redirect_to posts_url
     else
       flash[:notice] = "comment can't submit empty"

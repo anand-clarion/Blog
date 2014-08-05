@@ -8,7 +8,7 @@
       <% end %>
     </div>
     <span> By - <%= link_to @post.user.name, user_path(@post.user.id) %> <span><%= time_ago_in_words(@post.created_at) %> ago</span></span>
-    <div class = "post_comment_count"> Comment :<%= @post.comments.count %></div>
+    <div class = "post_comment_count"> Comment :<%= @post.comments.where(is_active: 1).count %></div>
     <hr>
     <div class = "post_content">  
       <%= @post.content.html_safe %>
@@ -35,13 +35,13 @@
       <% end %>
       <% @comments.each do |comment| %>
         <%= link_to User.find(comment.user_id).name, User.find(comment.user_id) %> <span id="comment_span"><%= time_ago_in_words(comment.created_at) %> ago</span><br>
-        <div class = "div_with_comment_content"><%= comment.content[0, 300] %>.....</div>
+        <div class = "div_with_comment_content"><%= comment.content[0, 200] %>.....</div>
         <% if can? :manage, comment %>
           <span id = "comment_span_button"><%= link_to "destroy", comment_path(comment), data: { confirm: "Are you sure?" }, :method => :delete %></span>
           <span id = "comment_span_button"> <button class = "active_button_class" id = "comment<%= comment.id %>" value = "<%= comment.id %>" table = "<%= comment.class %>" ><%=check_activation_status(comment.id, comment.class) %></button></span>
-        <% end %><hr>
+        <% end %><hr class = "hr_tag">
       <% end %>
-      <% if @post.comments.count > 0 %>
+      <% if @post.comments.where(is_active: 1).count > 0 %>
         <div class = "view_all_comment_link"><%= link_to "view all comments >>", comment_path(@post) %></div>
       <% end %>
     </div>

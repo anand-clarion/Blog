@@ -21,5 +21,11 @@ class UserMailer < ActionMailer::Base
     @url  = 'http://blog.com/login'
     mail(to: @user.email, subject: 'Your account has been De-activated from blog.com')
   end
+
+  # This action send a notification email to admin after every new comment
+  def comment_create(comment)
+    @comment = comment
+    mail(to: "anand.tripathi@clariontechnologies.co.in", subject: 'New comment Added')
+  end
   
 end

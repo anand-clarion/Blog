@@ -14,10 +14,12 @@
   padding:5px;
   background-color:#F4F4F4;
   margin-bottom:15px;
+  overflow:hidden;
+  word-wrap:break-word;
 }
 
 .post_content {
-  float:left;
+  word-wrap:break-word;
 }
 
 .latest_post h3 {
