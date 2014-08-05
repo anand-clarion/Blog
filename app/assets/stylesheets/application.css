@@ -16,7 +16,7 @@
  *= require_self
  */
 .error_explanation {
-  color:red;
+  color:#731D1D;
 }
 
 .field_with_errors { 
@@ -25,10 +25,6 @@
 
 .devise_errors {
   color:Brown;
-}
-
-.devise_errors h2 {
-  font-size:14px;
 }
 
 body {
@@ -52,11 +48,6 @@ body {
   margin-right:20px;
 }
 
-.header_image {
-
-  height:154px;
-  width:648px;
-}
 .header_flash_message {
   color:white;
   height:30px;
@@ -64,12 +55,12 @@ body {
   margin-left:10px;
 }
 
-.header_link_for_controller {
+.header_link_for_singed_user {
   float:left;
   margin-top:30px;
 }
 
-.header_link_to {
+.user_account_activity_link {
   color:white;
   font-weight:bold;
   margin-left:40px;
@@ -102,7 +93,7 @@ a {
   margin-left:30px;
 }
 
-.login_image_container {
+.login_page_image_container {
   float:right;
   margin-top:-360px;
   margin-right:40px;

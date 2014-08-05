@@ -2,23 +2,22 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-table { }
-table td, th { }
-th { padding: 7px; }
-td { padding: 7px; }
-
 .new_post_form {
- width:400px;
+ width:520px;
  text-align:center;
 }
 
 .latest_post {
-  width:400px;
-  min-height:153px;
-  border: solid 1px ;
-  margin-bottom:10px;
+  width:520px;
+  min-height:170px;
+  border: solid 1px;
   padding:5px;
   background-color:#F4F4F4;
+  margin-bottom:15px;
+}
+
+.post_content {
+  float:left;
 }
 
 .latest_post h3 {
@@ -34,16 +33,25 @@ td { padding: 7px; }
 
 .post_comment_container {
   clear:both;
-  min-height:250px;
-  width:400px;
+  min-height:156px;
+  width:520px;
   background-color:white;
 }
-
 
 #comment_span {
   margin-left:24px;
   font-size:12px;
   color:red;
+}
+
+.div_with_comment_content {
+  margin-left:20px;
+}
+
+.view_all_comment_link {
+  float:right;
+  font-size:20px;
+  margin-top:-3px;
 }
 
 #ckeditor_span {
@@ -53,38 +61,33 @@ td { padding: 7px; }
 
 .post_comment_count {
   float:right;
-  color:  #CC0000;
+  color:#CC0000;
   font-size:12px;
 }
 
 .post_read_more {
-  float:right;
-  background-color:Gainsboro;
-  margin-left:300px;
-  position:absolute;
-}
-
-.post_show_admin_action {
-  float:left;
-  margin-left:129px;
-  background-color:red;
+  margin-top:10px;
+  margin-left:400px;
 }
 
 .post_view_container {
   margin-left:100px;
   float:left;
+  width:auto;
 }
 
-.post_second-container {
+.post_show_container_for_image {
   float:right;
   margin-top:50px;
   margin-right:200px;
 }
 
-.post_second_container_for_index {
+.post_second_container_in_index {
   float:right;
-  margin-top:123px;
+  margin-top:57px;
   margin-right:268px;
+  border: groove 2px;
+  width:300px;
 }
 
 #h3_for_post_heading {
@@ -93,4 +96,18 @@ td { padding: 7px; }
 
 .comments {
   margin-left:13px;
+}
+
+.post_rating_container {
+  margin-left:414px;
+}
+
+.admin_action_for_post_in_post_show {
+  width:100px;
+  float:right;
+}
+
+#comment_span_button {
+  float:left;
+  margin-left:30px;
 }

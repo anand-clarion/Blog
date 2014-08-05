@@ -17,32 +17,31 @@
     <% if user_signed_in? %>
       <div class = "header_link" >
         <span id = "signed_in_as">Signed in as <%= current_user.name %></span>
-        <%= link_to 'Edit profile', edit_user_registration_path, :class => "header_link_to" %>
-        <%= link_to "Sign out", destroy_user_session_path,:method => :delete, :class => "header_link_to" %>
+        <%= link_to 'Edit profile', edit_user_registration_path, :class => "user_account_activity_link" %>
+        <%= link_to "Sign out", destroy_user_session_path,:method => :delete, :class => "user_account_activity_link" %>
       </div>
-      <div class = "header_link_for_controller" >
-        <%= link_to "User", users_path, :class => "header_link_to" %>
-        <%= link_to "Create Post", new_post_path,  :class => "header_link_to" %>
-        <%= link_to "Post Index", posts_path, :class => "header_link_to" %>
+      <div class = "header_link_for_singed_user" >
+        <%= link_to "User", users_path, :class => "user_account_activity_link" %>
+        <%= link_to "Create Post", new_post_path,  :class => "user_account_activity_link" %>
+        <%= link_to "Post Index", posts_path, :class => "user_account_activity_link" %>
         <% if current_user.admin? %>
-          <%= link_to "Post category", categories_path, :class => "header_link_to" %>
+          <%= link_to "Post category", categories_path, :class => "user_account_activity_link" %>
         <% end %>
       </div>
       <div class = "search_form">
         <% all_data = table_data() %>
         <%= form_tag (search_users_path) do %>  
         <%= hidden_field_tag :auto_holder, "#{ all_data.join(",") }" %>
-          <%= text_field_tag :search, params[:search], placeholder: "Search" %> 
+          <%= text_field_tag :search, params[:search], placeholder: "Search by post, name, title", :size =>"25" %> 
           <%= submit_tag "Search", :name => nil %>     
         <% end %>
       </div>
     <% else %>
       <div class = "header_link" >
-        <%= link_to "Login", new_user_session_path, :class => "header_link_to" %>
+        <%= link_to "Login", new_user_session_path, :class => "user_account_activity_link" %>
       </div>
     <% end %>
   </div>
-  <%= yield :javascript_includes %> 
   <div class = "yield_container">  
     <%= yield %>
   </div>

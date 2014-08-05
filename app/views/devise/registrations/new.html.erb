@@ -1,29 +1,46 @@
-<h4>Hello New User</h4>
+<center><h2 id= "new_user_form_note"> Welcome In The World Of Blog </h2></center>
+<div class = "new_user_form">
+  <h4>Hello New User</h4>
+  <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+    <div class ="devise_errors">
+      <%= devise_error_messages! %>
+    </div>
+    
+    <div class = "form_field">
+      <div class = "form_label"><%= f.label :name %></div>
+      <div class = "form_text_field"><b>:</b> <%= f.text_field :name, autofocus: true %></div>
+    </div>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-<div class ="devise_errors">
-  <%= devise_error_messages! %>
+    <div class = "form_field">
+      <div class = "form_label"><%= f.label :email %></div>
+      <div class = "form_text_field"><b>:</b> <%= f.email_field :email, autofocus: true %></div>
+    </div>
+
+    <div class = "form_field">
+      <div class = "form_label"><%= f.label :password %></div>
+      <div class = "form_text_field"><b>:</b> <%= f.password_field :password, autocomplete: "off" %></div>
+    </div>
+
+    <div class = "form_field">
+      <div class = "form_label"><%= f.label :password_confirmation %></div>
+      <div class = "form_text_field"><b>:</b> <%= f.password_field :password_confirmation, autocomplete: "off" %></div>
+    </div>
+
+    <div class = "form_field">
+      <div class = "form_label"><%= f.label :city %></div>
+      <div class = "form_text_field"><b>:</b> <%= f.text_field :city, autofocus: true %></div>
+    </div>
+
+    <div class = "form_field">
+      <div class = "form_label"><%= f.label :phone_no %></div>
+      <div class = "form_text_field"><b>:</b> <%= f.text_field :phone_no, autofocus: true %></div>
+    </div>
+
+    <center><div><%= f.submit "Sign up", class: "submit_button" %></div></center>
+  <% end %>
+
 </div>
-  
-  <div><%= f.label :name %><br />
-  <%= f.text_field :name, autofocus: true %></div>
 
-  <div><%= f.label :email %><br />
-  <%= f.email_field :email, autofocus: true %></div>
-
-  <div><%= f.label :password %><br />
-    <%= f.password_field :password, autocomplete: "off" %></div>
-
-  <div><%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "off" %></div>
-
-  <div><%= f.label :city %><br />
-  <%= f.text_field :city, autofocus: true %></div>
-
-  <div><%= f.label :phone_no %><br />
-  <%= f.text_field :phone_no, autofocus: true %></div>
-  
-  <div><%= f.submit "Sign up" %></div>
-<% end %>
-
-<%= render "devise/shared/links" %>
+<div class = "post_show_container_for_image">
+ <%= image_tag "new2.jpg" %>
+</div>

@@ -2,6 +2,19 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+table { border-collapse:collapse; width:100% }
+table td, th { border-bottom: solid 2px}
+th { padding: 10px; }
+td { padding: 10px; }
+
+tr:nth-child(even):hover {
+  background-color:#FFC266;
+}
+
+tr:nth-child(odd):hover {
+  background-color:LightBlue
+}
+
 .user_show {
   height:300px;
   width:400px;
@@ -9,4 +22,43 @@
 
 .search_view {
   width:400px;
+}
+
+.form_field {
+  height:54px;
+  width:377px;
+}
+
+.form_label {
+   float:left;
+   width:172px;
+}
+
+.form_text_field {
+   float:right;
+}
+
+input:focus {
+  background-color:#D0DFFA;
+}
+
+.new_user_form {
+  width:500px;
+  background-color:#E0EAFB;
+  margin-left:200px;
+  float:left;
+}
+
+.submit_button {
+  width:100px;
+  color:#800000;
+  height:30px;
+}
+
+.submit_button:hover {
+  background-color:white;
+}
+
+#new_user_form_note {
+  color:#A52A2A;
 }

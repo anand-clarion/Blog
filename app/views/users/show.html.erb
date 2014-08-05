@@ -21,11 +21,10 @@
       <tr>
         <th>Manage Account</th>
         <td>
-          <button id = "active_button" value = "<%= @user.id %>" table = "<%= @user.class %>" ><%=check_activation_status(@user.id, @user.class) %></button>
-          <%= button_to "Destroy", user_path(@user), method: :delete %>
+          <button id = "active_button" value = "<%= @user.id %>" table = "<%= @user.class %>" ><%= check_activation_status(@user.id, @user.class) %></button>
+          <%= button_to "Destroy", user_path(@user), method: :delete, data: { confirm: "Are you sure?" } %>
         </td>
       </tr>
     <% end %>
-
   </table>
 </div></center>

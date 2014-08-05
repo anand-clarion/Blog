@@ -4,24 +4,20 @@
       <h2>Log-In</h2>
     </div>
 
-  <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-    <div><span><%= f.label :email%> : </span>
-    <%= f.email_field :email, autofocus: true %></div><br>
+    <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+      <div><span><%= f.label :email%> : </span>
+      <%= f.email_field :email, autofocus: true %></div><br>
 
-    <div><%= f.label :password %> :
-      <%= f.password_field :password, autocomplete: "off" %></div>
+      <div><%= f.label :password %> :
+        <%= f.password_field :password, autocomplete: "off" %></div>
 
-    <!-- <% if devise_mapping.rememberable? -%>
-      <div><%= f.check_box :remember_me %> <%= f.label :remember_me %></div>
-    <% end -%> -->
-
-    <div><%= f.submit "Sign in" %></div>
-  <% end %>
-  <p><%= link_to "Forgot your password?", new_password_path(resource_name) %></p><br />
-  <p>New User ?- <%= link_to "Sign up", new_registration_path(resource_name) %></p>
-</div>
-<h1> Wel-come In the world of Blog </h1>
+      <div><%= f.submit "Sign in" %></div>
+    <% end %>
+    <p><%= link_to "Forgot your password?", new_password_path(resource_name) %></p><br />
+    <p>New User ?- <%= link_to "Sign up", new_registration_path(resource_name) %></p>
+  </div>
+  <h1> Wel-come In the world of Blog </h1>
 </center>
-<div class = "login_image_container">
- <%= image_tag "new2.jpg" %>
+<div class = "login_page_image_container">
+  <%= image_tag "new2.jpg" %>
 </div>

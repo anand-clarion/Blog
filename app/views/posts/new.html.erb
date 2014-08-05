@@ -20,11 +20,11 @@
     <span id ="ckeditor_span">Show Editor</span>
     <div id = "ckeditor" style = "display:none" >
       <%= f.label :content %>:
-      <%= f.cktext_area :content,:placeholder => "Write your thought", size: "20x30" %>
+      <%= f.cktext_area :content,:placeholder => "Write your thought", :class => "ckeditor_text_area" ,size: "20x30" %>
     </div>
     <div id = "normal_field">
       <%= f.label :content %>:
-      <%= f.text_area :content,:placeholder => "Write your thought", size: "25x8", disabled: false, status: "enable" %>
+      <%= f.text_area :content,:placeholder => "Write your thought", size: "25x8", disabled: false, :class => "normal_text_area"%>
     </div>
     <div>
       <%= f.hidden_field :user_id, :value => "current_user.id" %>

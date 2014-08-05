@@ -9,7 +9,7 @@
         <span> By - <%= link_to post.user.name, user_path(post.user.id) %> <span><%= time_ago_in_words(post.created_at) %> ago</span></span>
         <div class = "post_comment_count"> Comment :<%= post.comments.count %></div>
         <hr>
-        <%= post.content.lines.first %>....
+        <div> <%= post.content.html_safe[0, 200] %>....</div>
         <div class = "post_read_more" >
           <%= link_to "read more >> ", post_path(post) %>
         </div>
@@ -19,7 +19,28 @@
   <%= will_paginate @posts %>
 </div>
 
-<div class = "post_second_container_for_index">
-  <%= image_tag "blog_icon.png" %>
+<div class = "post_second_container_in_index">
+  <div class = "post_header">
+    <h4> Post with maximum comments </h4>
+  </div>
+  <table>
+    <% @post_with_maximum_comments.each do |post| %>
+      <tr>
+        <td><%= link_to post.title, post_path(post) %></td>
+      </tr>
+    <% end %>
+  </table>
 </div>
 
+<div class = "post_second_container_in_index">
+  <div class = "post_header">
+    <h4> Post with maximum rating</h4>
+  </div>
+  <table>
+    <% @post_with_rating.each do |post| %>
+      <tr>
+        <td><%= link_to post.title, post_path(post) %></td>
+      </tr>
+    <% end %>
+  </table>
+</div>
