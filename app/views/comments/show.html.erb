@@ -1,0 +1,12 @@
+<h2 id = "h3_for_post_heading"> Comments for Post - Title <%= link_to "#{ @comments.first.post.title }", post_path(@comments.first.post.id) %> </h2>
+<div class = "comment_show_action">
+  <% @comments.each do |comment| %>
+    <%= link_to User.find(comment.user_id).name, User.find(comment.user_id) %> <span id="comment_span"><%= time_ago_in_words(comment.created_at) %> ago</span><br>
+    <div class = "div_with_comment_content"><%= comment.content %></div>
+    <% if can? :manage, comment %>
+      <span id = "comment_span"><%= link_to "destroy", comment_path(comment), :method => :delete, :confirm => "Are you sure ?" %></span>
+      <span id ="comment_span"> <button class = "active_button_class" id = "comment<%= comment.id %>" value = "<%= comment.id %>" table = "<%= comment.class %>" ><%=check_activation_status(comment.id, comment.class) %></button></span>
+    <% end %><hr>
+  <% end %>
+  <%= will_paginate @comments %>
+</div>
