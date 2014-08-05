@@ -7,7 +7,7 @@ class PostsController < ApplicationController
     else
       @posts = Post.where(is_active: 1).order(created_at: :desc).paginate(:page => params[:page], :per_page => 3)
     end
-    @post_with_maximum_comments = Post.order(comments_count: :desc).limit(4)
+    @post_with_maximum_comments = Post.where("comments_count > 0").order(comments_count: :desc).limit(4)
     @post_with_rating = Post.joins(:title_average).order('rating_caches.avg DESC').limit(4)
   end
 
@@ -25,6 +25,22 @@ class PostsController < ApplicationController
     else
       render "new"
     end
+  end
+
+  # This action edit a post information
+  def edit
+    @post = Post.find(params[:id])
+  end
+
+  # This action update a post information 
+  def update
+    @post = Post.find(params[:id])
+    if @post.update_attributes(post_params)
+      flash[:notice] = "Post updated successfully"
+      redirect_to posts_url
+    else
+      render "edit"
+    end 
   end
 
   # This action show a post information

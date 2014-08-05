@@ -23,24 +23,32 @@
   <div class = "post_header">
     <h4> Post with maximum comments </h4>
   </div>
-  <table>
-    <% @post_with_maximum_comments.each do |post| %>
-      <tr>
-        <td><%= link_to post.title, post_path(post) %></td>
-      </tr>
-    <% end %>
-  </table>
+  <% if @post_with_maximum_comments.empty? %>
+    <center><h4> Post not avialable </h4></center>
+  <% else %>
+    <table>
+      <% @post_with_maximum_comments.each do |post| %>
+        <tr>
+          <td><%= link_to post.title, post_path(post) %></td>
+        </tr>
+      <% end %>
+    </table>
+  <% end %>
 </div>
 
 <div class = "post_second_container_in_index">
   <div class = "post_header">
     <h4> Post with maximum rating</h4>
   </div>
-  <table>
-    <% @post_with_rating.each do |post| %>
-      <tr>
-        <td><%= link_to post.title, post_path(post) %></td>
-      </tr>
-    <% end %>
-  </table>
+  <% if @post_with_maximum_comments.empty? %>
+    <center><h4> Post not avialable </h4></center>
+  <% else %>
+    <table>
+      <% @post_with_rating.each do |post| %>
+        <tr>
+          <td><%= link_to post.title, post_path(post) %></td>
+        </tr>
+      <% end %>
+    </table>
+  <% end %>
 </div>
