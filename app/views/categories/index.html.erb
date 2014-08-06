@@ -1,4 +1,4 @@
-<center><div class = "category_index">
+<div class = "category_index">
   <div class ="post_header">
     <p><b>Categories List</b></p>
   </div>
@@ -10,5 +10,5 @@
       <div class= "category_name"><span><button class = "active_button_class" id = "category<%= category.id %>"  value = "<%= category.id %>" table = "<%= category.class %>" ><%=check_activation_status(category.id, category.class) %></button></span></div>
     </div>
   <% end %>
-  <%= link_to "New Category", new_category_path %>
-</div></center>
+  <center><%= link_to "New Category", new_category_path %></center>
+</div>
