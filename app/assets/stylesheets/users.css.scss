@@ -18,6 +18,9 @@ tr:nth-child(odd):hover {
 .user_show {
   height:300px;
   width:400px;
+  margin-left:460px;
+  z-index:-1;
+  position:absolute;
 }
 
 .search_view {
@@ -56,7 +59,7 @@ input:focus {
 }
 
 .submit_button:hover {
-  background-color:white;
+  background-color:#5077BE;
 }
 
 #new_user_form_note {

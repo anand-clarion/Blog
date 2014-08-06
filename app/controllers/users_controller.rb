@@ -22,10 +22,15 @@ class UsersController < ApplicationController
 
   # This action search data from models.
   def search
-    @school = Array.new
-    @school << User.search(params[:search])
-    @school << Post.search(params[:search])
-    @school << Comment.search(params[:search])
+    if !params[:search].empty?
+      @school = Array.new
+      @school << User.search(params[:search])
+      @school << Post.search(params[:search])
+      @school << Comment.search(params[:search])
+    else
+      flash[:notice] = "Can't search for empty string"
+      redirect_to posts_url
+    end
   end
 
 end

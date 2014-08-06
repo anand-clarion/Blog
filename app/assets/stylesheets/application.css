@@ -33,6 +33,7 @@ body {
 
 .yield_container {
   padding:20px;
+  z-index:-1;
 }
 
 .header {
@@ -97,4 +98,25 @@ a {
   float:right;
   margin-top:-360px;
   margin-right:40px;
+}
+
+.navigation {
+  float:right;
+}
+
+.ui_block {
+  display: none;
+}
+
+.ul_block ul {
+  margin-left:-40px;
+  list-style-type:none;
+}
+
+.ul_block ul li a {
+  display:block;
+  width:150px;
+  color:white;
+  background-color:#474747;
+  padding:15px;
 }

@@ -4,9 +4,9 @@ module ApplicationHelper
   def check_activation_status(id, model)
     status = model.find(id)
     if status.is_active == true
-      "deactivate"
+      "Deactivate"
     else
-      "activate"
+      "Activate"
     end
   end
 

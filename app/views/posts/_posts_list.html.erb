@@ -1,0 +1,54 @@
+<% if @posts.empty? %>
+  <h4>No post created Till now </h4>
+<% else %>
+  <% @posts.each_with_index do |post, n| %>
+    <div class="latest_post">
+      <h3><b><%= link_to post.title, post_path(post) %></b></h3>
+      <span> By - <%= link_to post.user.name, user_path(post.user.id) %> <span><%= time_ago_in_words(post.created_at) %> ago</span></span>
+      <div class = "post_comment_count"> Comment :<%= post.comments.where(is_active: 1).count %></div>
+      <hr>
+      <div> <%= post.content.html_safe[0, 200] %>....</div>
+      <div class = "post_read_more" >
+        <%= link_to "read more >> ", post_path(post) %>
+      </div>
+    </div>
+  <% end %>
+<% end %> 
+<%= will_paginate @posts %>
+</div>
+<div class = "right_container_in_post_index">
+<div class = "second_container_div">
+  <div class = "post_header">
+    <h4> Post with maximum comments </h4>
+  </div>
+  <% if @post_with_maximum_comments.empty? %>
+    <center><h4> Post not avialable </h4></center>
+  <% else %>
+    <table>
+      <% @post_with_maximum_comments.each do |post| %>
+        <tr>
+          <% if post.comments.where(is_active: 1).count > 0 %>
+            <td><%= link_to post.title, post_path(post) %></td>
+          <% end %>
+        </tr>
+      <% end %>
+    </table>
+  <% end %>
+</div>
+
+<div class = "second_container_div">
+  <div class = "post_header">
+    <h4> Post with maximum rating</h4>
+  </div>
+  <% if @post_with_maximum_comments.empty? %>
+    <center><h4> Post not avialable </h4></center>
+  <% else %>
+    <table>
+      <% @post_with_rating.each do |post| %>
+        <tr>
+          <td><%= link_to post.title, post_path(post) %></td>
+        </tr>
+      <% end %>
+    </table>
+  <% end %>
+</div>

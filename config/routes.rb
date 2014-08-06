@@ -18,6 +18,15 @@ Rails.application.routes.draw do
       post 'search'
     end
   end
+
+  resources :posts do
+     member do
+       get 'show_post_by_category'
+     end
+  end
+
+  # get 'show_post_by_category/:id' => 'posts#show_post_by_category'
+
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 

@@ -1,6 +1,6 @@
 <div class = "post_view_container">
   <% if !@posts.empty? %>
-    <h3 id ="h3_for_post_heading">Latest Post</h3>
+    <h3 id ="h3_for_post_heading"> Posts of <%= @posts.first.category.name %> category</h3>
   <% end %>
   <%= render "posts_list" %>
 </div>

@@ -1,6 +1,8 @@
-<center>
-  <h3> Users List </h3>
+<% if @users.empty? %>
+  <center><h3>No user except you</h3></center>
+<% else %>
   <div class = "user_show">
+    <h3> Users List </h3>
     <table>
       <tr>
         <th>Sr. No</th>
@@ -16,4 +18,4 @@
       <% end %>
     </table>
   </div>
-</center>
+<% end %>

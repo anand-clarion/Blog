@@ -32,12 +32,12 @@ $(document).on('ready page:load', function () {
     $("#active_button").on("click", function() {
       var id = $('#active_button').val();
       var table_name = $('#active_button').attr("table");
-      if($("#active_button").text() == "deactivate") {
-        $('#active_button').text("activate")
+      if($("#active_button").text() == "Deactivate") {
+        $('#active_button').text("Activate")
         deactivate(id, table_name) 
       }
       else {
-        $("#active_button").text("deactivate")
+        $("#active_button").text("Deactivate")
         var id = $('#active_button').val();
         var table_name = $('#active_button').attr("table");
         activate(id, table_name);
@@ -50,14 +50,23 @@ $(document).on('ready page:load', function () {
       var button_id = $(this).attr('id'); 
       var id =  $("#"+button_id).val();
       var table_name =  $("#"+button_id).attr("table");
-      if($("#"+button_id).text() == "deactivate") {
-        $("#"+button_id).text("activate")
+      if($("#"+button_id).text() == "Deactivate") {
+        $("#"+button_id).text("Activate")
         deactivate(id, table_name) 
       }
       else {
-        $("#"+button_id).text("deactivate")
+        $("#"+button_id).text("Deactivate")
         activate(id, table_name);
       }
+    });
+  });
+
+  $(function() {
+    $(".navigation").mouseover(function() {
+      $(".ul_block").show();
+    });
+    $(".navigation").mouseout(function() {
+      $(".ul_block").hide();
     });
   });
 });

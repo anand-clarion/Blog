@@ -5,6 +5,9 @@
 .new_post_form {
  width:520px;
  text-align:center;
+ z-index:-1;
+ position:absolute;
+ margin-left:400px;
 }
 
 .latest_post {
@@ -76,6 +79,8 @@
   margin-left:100px;
   float:left;
   width:auto;
+  z-index:-1;
+  position:absolute;
 }
 
 .post_show_container_for_image {
@@ -84,16 +89,8 @@
   margin-right:200px;
 }
 
-.post_second_container_in_index {
-  float:right;
-  margin-top:57px;
-  margin-right:268px;
-  border: groove 2px;
-  width:300px;
-}
-
 #h3_for_post_heading {
-  color:#A52A2A 
+  color:#A52A2A;
 }
 
 .comments {
@@ -117,4 +114,14 @@
 .post_edit_link {
   float:right;
   margin-top:-35px;
+}
+
+.right_container_in_post_index {
+  float:right;
+  margin-right:150px;
+}
+
+.second_container_div {
+  margin:80px;
+  border: groove 1px;
 }

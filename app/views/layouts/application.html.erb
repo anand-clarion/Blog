@@ -27,11 +27,20 @@
         <% if current_user.admin? %>
           <%= link_to "Post category", categories_path, :class => "user_account_activity_link" %>
         <% end %>
+        <div class = "navigation user_account_activity_link">Post by category
+          <div class = "ul_block" style = "display:none" >
+            <ul>
+              <% Category.where(is_active: 1).each do |category| %>
+                <li><%= link_to "#{category.name}", show_post_by_category_post_path(category) %> </li>
+              <% end %>    
+            </ul>
+          </div>
+        </div>
       </div>
       <div class = "search_form">
         <% all_data = table_data() %>
         <%= form_tag (search_users_path) do %>  
-        <%= hidden_field_tag :auto_holder, "#{ all_data.join(",") }" %>
+          <%= hidden_field_tag :auto_holder, "#{ all_data.join(",") }" %>
           <%= text_field_tag :search, params[:search], placeholder: "Search by post, name, title", :size =>"25" %> 
           <%= submit_tag "Search", :name => nil %>     
         <% end %>
