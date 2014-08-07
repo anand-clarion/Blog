@@ -24,14 +24,16 @@
     </div>
     <div class = "comments">
       <%= form_for @comment do |f| %>
-        <center><div>
-          <%= f.text_area :content, size: "37x4", placeholder: "comment" %>
-          <%= f.hidden_field :post_id,  :value => @post.id %>
-          <%= f.hidden_field :user_id, :value => current_user.id%>
-        </div>
-        <div>
-          <%= f.submit class: 'btn btn-primary btn-sm' %>
-        </div></center>
+        <center>
+          <div>
+            <%= f.text_area :content, size: "37x4", placeholder: "comment" %>
+            <%= f.hidden_field :post_id,  :value => @post.id %>
+            <%= f.hidden_field :user_id, :value => current_user.id%>
+          </div>
+          <div>
+            <%= f.submit class: 'btn btn-primary btn-sm' %>
+          </div>
+        </center>
       <% end %>
       <span id = "h3_for_post_heading"><b>Total comments</b></span>-<span class="badge"><%= @post.comments.where(is_active: 1).count %></span>
       <% @comments.each do |comment| %><hr>
@@ -64,5 +66,5 @@
 <% end %>
 
 <div class = "image_container div_absolute_position">
- <%= image_tag "new2.jpg" %>
+  <%= image_tag "new2.jpg" %>
 </div>

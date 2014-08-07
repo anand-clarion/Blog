@@ -1,4 +1,9 @@
 class CommentsController < ApplicationController
+
+  # This action show all deactivated comments for admin
+  def index
+    @deactivated_comments = Comment.where(is_active: 0).paginate(:page => params[:page], :per_page => 7)
+  end
   
   # This action show all comments of a post
   def show
@@ -30,6 +35,11 @@ class CommentsController < ApplicationController
     else
       render :text => " hey something gonna wrong"
     end
+  end
+
+  # This action show a comment content
+  def view_comment
+    @comment = Comment.find(params[:id])
   end
 
   # This action permit accessible attribute for comment model.

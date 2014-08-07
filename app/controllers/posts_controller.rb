@@ -48,9 +48,9 @@ class PostsController < ApplicationController
     @post = Post.find(params[:id])
     @comment = Comment.new
     if current_user.admin?
-      @comments = @post.comments.order(created_at: :desc)
+      @comments = @post.comments.order(created_at: :desc).paginate(:page => params[:page], :per_page => 3)
     else
-      @comments = @post.comments.where(is_active: 1).order(created_at: :desc)
+      @comments = @post.comments.where(is_active: 1).order(created_at: :desc).paginate(:page => params[:page], :per_page => 3)
     end
   end
 

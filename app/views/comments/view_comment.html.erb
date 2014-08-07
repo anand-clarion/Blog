@@ -1,0 +1,12 @@
+<div class = "view_comment_container div_absolute_position ">
+  <div class = "post_header">
+    <h3 id = "colored_heading">Comment </h3>
+  </div>
+  <div class="latest_post">
+    <h3><b><%= link_to @comment.post.title, post_path(@comment.post.id) %></b></h3>
+    <span> By - <%= link_to @comment.post.user.name, user_path(@comment.user.id) %> <span><%= time_ago_in_words(@comment.created_at) %> ago</span></span>
+    <hr>
+    <div> <%= @comment.content %></div>
+    <button class = "active_button_class btn btn-success btn-sm" id = "comment<%= @comment.id %>" value = "<%= @comment.id %>" table = "<%= @comment.class %>" ><%= check_activation_status(@comment.id, @comment.class) %></button>
+  </div>
+</div>

@@ -1,0 +1,30 @@
+<% if @deactivated_comments.empty? %>
+  <center><h3 id = "colored_heading">No comments</h3></center>
+<% else %>
+  <div class = "deactivate_comment_show div_absolute_position">
+    <h3 id = "colored_heading"> Unactivated Commentes </h3>
+    <table>
+      <tr>
+        <th>Sr. No</th>
+        <th>Post title</th>
+        <th>By user</th>
+        <th>Comment content</th>
+        <th>Action</th>
+      </tr>
+      <% @deactivated_comments.each_with_index do |comment, n| %>
+        <tr>
+          <td><%= n+1 %></td>
+          <td><%= link_to comment.post.title, post_path(comment.post.id) %></td>
+          <td><%= link_to comment.user.name, user_path(comment.user.id) %></td>
+          <td><%= comment.content.truncate(30) %></td>
+          <td><button class = "active_button_class btn btn-success btn-sm" id = "comment<%= comment.id %>" value = "<%= comment.id %>" table = "<%= comment.class %>" ><%=check_activation_status(comment.id, comment.class) %></button>
+          <%= link_to "show", view_comment_comment_path(comment), target: "_blank" ,class: "btn btn-success btn-sm", id: "my"%></td>
+        </tr>
+      <% end %>
+    </table>
+    <%= link_to 'Back', :back %>
+  </div>
+<% end %>
+<div class = "index_paginate">
+  <%= will_paginate @deactivated_comments %>
+</div>

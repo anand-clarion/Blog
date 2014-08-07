@@ -9,7 +9,7 @@
 <body>
   <div class = "header">
     <div class = "header_flash_message">
-      <h3>BLOG.COM</h3>
+      <h3 id= "logo">BLOG.COM</h3>
       <% flash.each do |name, msg| %>
         <%= content_tag :div, msg, class: name %>
       <% end %>
@@ -21,11 +21,12 @@
         <%= link_to "Sign out", destroy_user_session_path,:method => :delete, :class => "user_account_activity_link" %>
       </div>
       <div class = "header_link_for_singed_user" >
-        <%= link_to "User", users_path, :class => "user_account_activity_link" %>
+        <%= link_to "Users", users_path, :class => "user_account_activity_link" %>
         <%= link_to "Create Post", new_post_path,  :class => "user_account_activity_link" %>
-        <%= link_to "Post Index", posts_path, :class => "user_account_activity_link" %>
+        <%= link_to "Posts", posts_path, :class => "user_account_activity_link" %>
         <% if current_user.admin? %>
           <%= link_to "Post category", categories_path, :class => "user_account_activity_link" %>
+          <%= link_to "New comments", comments_path, :class => "user_account_activity_link" %><span class="badge"><%= Comment.where(is_active: 0).count %></span>
         <% end %>
         <div class = "navigation user_account_activity_link">Post by category
           <div class = "ul_block" style = "display:none" >
@@ -42,7 +43,7 @@
         <%= form_tag (search_users_path) do %>  
           <%= hidden_field_tag :auto_holder, "#{ all_data.join(",") }" %>
           <%= text_field_tag :search, params[:search], placeholder: "Search by post, name, title", :size =>"25" %> 
-          <%= submit_tag "Search", :name => nil %>     
+          <%= submit_tag "Search" %>     
         <% end %>
       </div>
     <% else %>

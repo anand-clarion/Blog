@@ -19,11 +19,11 @@
 //= require turbolinks
 //= require_tree .
 
-$(document).on('ready page:load', function () {
+$(document).on('ready page:load', function () {  
   
   $(function() {
     var availableTags = $("#auto_holder").val().split(",");
-    $( "#search" ).autocomplete({
+    $("#search").autocomplete({
       source: availableTags
     });
   });
@@ -43,8 +43,8 @@ $(document).on('ready page:load', function () {
         activate(id, table_name);
       }
     });
-  });
-
+  }); 
+  
   $(function() {
     $(".active_button_class").on("click", function() {
       var button_id = $(this).attr('id'); 

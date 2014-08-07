@@ -20,9 +20,15 @@ Rails.application.routes.draw do
   end
 
   resources :posts do
-     member do
-       get 'show_post_by_category'
-     end
+    member do
+      get 'show_post_by_category'
+    end
+  end
+
+  resources :comments do
+    member do 
+      get 'view_comment'
+    end
   end
 
   # get 'show_post_by_category/:id' => 'posts#show_post_by_category'
