@@ -1,5 +1,5 @@
-<center><h3 id ="h3_for_post_heading"> This Post is wrote by - <%= link_to @post.user.name, user_path(@post.user.id) %> </h3></center>
-<div class = "post_view_container">
+<div class = "post_view_container div_absolute_position">
+  <center><h3 id = "colored_heading"> This Post is wrote by - <%= link_to @post.user.name, user_path(@post.user.id) %> </h3></center>
   <div class="latest_post">
     <h3><%= link_to @post.title, post_path(@post) %></h3>
     <div class = "post_edit_link">
@@ -30,18 +30,23 @@
           <%= f.hidden_field :user_id, :value => current_user.id%>
         </div>
         <div>
-          <%= f.submit %>
+          <%= f.submit class: 'btn btn-primary btn-sm' %>
         </div></center>
       <% end %>
-      <% @comments.each do |comment| %>
-        <%= link_to User.find(comment.user_id).name, User.find(comment.user_id) %> <span id="comment_span"><%= time_ago_in_words(comment.created_at) %> ago</span><br>
-        <div class = "div_with_comment_content"><%= comment.content[0, 200] %>.....</div>
-        <% if can? :manage, comment %>
-          <span id = "comment_span_button"><%= link_to "destroy", comment_path(comment), data: { confirm: "Are you sure?" }, :method => :delete %></span>
-          <span id = "comment_span_button"> <button class = "active_button_class" id = "comment<%= comment.id %>" value = "<%= comment.id %>" table = "<%= comment.class %>" ><%=check_activation_status(comment.id, comment.class) %></button></span>
-        <% end %><hr class = "hr_tag">
+      <span id = "h3_for_post_heading"><b>Total comments</b></span>-<span class="badge"><%= @post.comments.where(is_active: 1).count %></span>
+      <% @comments.each do |comment| %><hr>
+        <div class = "Comment_content_text">
+          <%= link_to User.find(comment.user_id).name, User.find(comment.user_id) %> <span id="comment_span"><%= time_ago_in_words(comment.created_at) %> ago</span><br>
+          <div class = "div_with_comment_content"><%= comment.content.truncate(50) %></div>
+          <% if can? :manage, comment %>
+            <span id = "comment_span_button"><%= button_to "destroy", comment_path(comment), data: { confirm: "Are you sure?" }, :method => :delete %></span>
+            <span id = "comment_span_button"> <button class = "active_button_class" id = "comment<%= comment.id %>" value = "<%= comment.id %>" table = "<%= comment.class %>" ><%=check_activation_status(comment.id, comment.class) %></button></span>
+          <% end %>
+        </div>
       <% end %>
-      <% if @post.comments.where(is_active: 1).count > 0 %>
+      <% if current_user.admin? && @post.comments.count > 3 %>
+        <div class = "view_all_comment_link"><%= link_to "view all comments >>", comment_path(@post) %></div>
+      <% elsif @post.comments.where(is_active: 1).count > 0 %>
         <div class = "view_all_comment_link"><%= link_to "view all comments >>", comment_path(@post) %></div>
       <% end %>
     </div>
@@ -58,6 +63,6 @@
   </div>
 <% end %>
 
-<div class = "post_show_container_for_image">
+<div class = "image_container div_absolute_position">
  <%= image_tag "new2.jpg" %>
 </div>

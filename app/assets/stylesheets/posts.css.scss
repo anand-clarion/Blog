@@ -3,11 +3,12 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 .new_post_form {
- width:520px;
- text-align:center;
- z-index:-1;
- position:absolute;
- margin-left:400px;
+  text-align:left;
+  margin-left:400px;
+  padding-left:20px;
+  border:groove 1px #C0C0C0; 
+  min-height:520px;
+  min-width:420px;
 }
 
 .latest_post {
@@ -23,10 +24,6 @@
 
 .post_content {
   word-wrap:break-word;
-}
-
-.latest_post h3 {
-  margin-top:3px;
 }
 
 .post_header {
@@ -60,7 +57,6 @@
 }
 
 #ckeditor_span {
-  color:DarkSlateGray;
   margin-left:235px;
 }
 
@@ -79,17 +75,9 @@
   margin-left:100px;
   float:left;
   width:auto;
-  z-index:-1;
-  position:absolute;
 }
 
-.post_show_container_for_image {
-  float:right;
-  margin-top:50px;
-  margin-right:200px;
-}
-
-#h3_for_post_heading {
+#colored_heading {
   color:#A52A2A;
 }
 
@@ -117,11 +105,21 @@
 }
 
 .right_container_in_post_index {
-  float:right;
-  margin-right:150px;
+  margin-left:700px;
 }
 
 .second_container_div {
   margin:80px;
   border: groove 1px;
+  z-index:-1;
 }
+
+.Comment_content_text {
+  min-height:70px;
+}
+
+.image_container {
+  float:right;
+  margin-left:770px;
+  margin-top:150px;
+ }

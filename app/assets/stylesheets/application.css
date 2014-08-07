@@ -49,11 +49,16 @@ body {
   margin-right:20px;
 }
 
+#logo {
+  color:#00CCFF;
+}
+
 .header_flash_message {
-  color:white;
+  color:#FFA584;
   height:30px;
   margin-top:-19px;
   margin-left:10px;
+  font-size:17px;
 }
 
 .header_link_for_singed_user {
@@ -100,6 +105,17 @@ a {
   margin-right:40px;
 }
 
+.sign_up_page_image_container {
+  float:right;
+  margin-top:70px;
+  margin-right:190px;
+}
+
+.div_absolute_position {
+  z-index:-1;
+  position:absolute;
+}
+
 .navigation {
   float:right;
 }
@@ -119,4 +135,8 @@ a {
   color:white;
   background-color:#474747;
   padding:15px;
+}
+
+.form-control {
+  width:auto;
 }

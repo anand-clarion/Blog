@@ -1,5 +1,5 @@
-<center> <h3> Profile of - <%= @user.name %> </h3></center>
-<center><div class="user_show">
+<center><div class="user_show div_absolute_position">
+  <h3> Profile of - <%= @user.name %> </h3>
   <table class = "athlete_show_table">
     <tr>
       <th>Name</th> 
@@ -26,7 +26,6 @@
       </tr>
     <% end %>
   </table>
-  <% if @user.is_active == 0 %>
-    <p> This user is deactivated </p>
-  <% end %> 
-</div></center>
+  <%= link_to 'Back', :back %> 
+</div>
+</center>

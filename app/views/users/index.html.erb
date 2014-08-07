@@ -1,7 +1,7 @@
 <% if @users.empty? %>
   <center><h3>No user except you</h3></center>
 <% else %>
-  <div class = "user_show">
+  <div class = "user_show div_absolute_position">
     <h3> Users List </h3>
     <table>
       <tr>
@@ -17,5 +17,6 @@
         </tr>
       <% end %>
     </table>
+    <%= link_to 'Back', :back %> 
   </div>
 <% end %>

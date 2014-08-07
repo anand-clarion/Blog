@@ -1,13 +1,13 @@
-<div class = "category_index">
+<div class = "category_index div_absolute_position">
   <div class ="post_header">
     <p><b>Categories List</b></p>
   </div>
   <% @categories.each_with_index do |category, n| %>
     <div class = "category_type">
       <div class ="category_name"><%= n+1 %></div>
-      <div class ="category_name"><%= category.name %></div>
-      <div class ="category_name"><span><%= button_to :destroy, category_path(category), :method => :delete , confirm: "Are you sure?" %></span></div>
-      <div class= "category_name"><span><button class = "active_button_class" id = "category<%= category.id %>"  value = "<%= category.id %>" table = "<%= category.class %>" ><%=check_activation_status(category.id, category.class) %></button></span></div>
+      <div class ="category_name"><%= category.name.capitalize() %></div>
+      <div class ="category_name"><span><%= button_to "Delete", category_path(category), :method => :delete , data: { confirm: "Are you sure?" }, class: "btn btn-danger btn-sm" %></span></div>
+      <div class= "category_name"><span><button class = "active_button_class btn btn-danger btn-sm" id = "category<%= category.id %>"  value = "<%= category.id %>" table = "<%= category.class %>" ><%=check_activation_status(category.id, category.class) %></button></span></div>
     </div>
   <% end %>
   <center><%= link_to "New Category", new_category_path %></center>

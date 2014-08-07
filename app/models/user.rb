@@ -4,9 +4,9 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
   has_many :posts, dependent: :destroy
   has_many :comments, dependent: :destroy
-  validates :name, length: { minimum: 5 }
-  validates :phone_no, length: { is: 10 , message: "Please Enter a valid 10 digit phone_no" }
-  validates :city, length: { minimum: 5 }
+  validates :name, presence: true
+  validates :phone_no,  presence: true, length: { is: 10 , message: "must be 10 digit long" }
+  validates :city,  presence: true, length: { minimum: 5 }
 
   # This action search for matched data in table for user search 
   def self.search(search)

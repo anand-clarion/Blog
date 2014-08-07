@@ -1,4 +1,4 @@
-<center><div class = "category_index">
+<center><div class = "category_index div_absolute_position">
   <div class ="post_header">
     <p><b>New Category</b></p>
   </div>
@@ -15,10 +15,10 @@
     <% end %>
     <div>
       <%= f.label :name %>
-      <%= f.text_field :name %>
+      <%= f.text_field :name, class: "form-control" %>
     </div><br>
     <div>
-      <%= f.submit %>
+      <%= f.submit class: 'btn btn-primary'%>
     </div>
   <% end %>
 </div></center>
