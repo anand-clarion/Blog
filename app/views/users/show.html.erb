@@ -1,5 +1,5 @@
 <center><div class="user_show div_absolute_position">
-  <h3> Profile of - <%= @user.name %> </h3>
+  <h3 id ="colored_heading"> Profile of - <%= @user.name %> </h3>
   <table class = "athlete_show_table">
     <tr>
       <th>Name</th> 
@@ -18,14 +18,63 @@
       <td><%= @user.phone_no %></td>
     </tr>
     <% if can? :manage ,@user %>
-      <tr>
-        <th>Manage Account</th>
-        <td>
-          <button id = "active_button" value = "<%= @user.id %>" table = "<%= @user.class %>" ><%= check_activation_status(@user.id, @user.class) %></button>
-        </td>
-      </tr>
+      <% if !@user.admin?  %>
+        <tr>
+          <th>Manage Account</th>
+          <td>
+            <button id = "active_button" value = "<%= @user.id %>" table = "<%= @user.class %>" ><%= check_activation_status(@user.id, @user.class) %></button>
+          </td>
+        </tr>
+      <% end %>
     <% end %>
   </table>
-  <%= link_to 'Back', :back %> 
+  <div class = "user_show_back_button">
+    <%= link_to 'Back', :back, class: 'btn btn-primary btn-sm' %> 
+  </div>
+  <div class = "user_show_friend_button">
+    <span id = "friended_by" class = "btn btn-primary btn btn-sm"> Friended by </span>
+  </div>
+  <div class = "user_show_friend_button">
+    <span id = "friends" class = "btn btn-primary btn btn-sm"> Friends </span>
+  </div>
+
+  <div class = "show_friended_by" style ="display:none">
+    <table>
+      <tr><p id = "colored_heading"> Friended by</p></tr>
+      <% if @inverse_friend.empty? %>
+        <td> No friend </td>
+      <% else %>
+       <% @inverse_friend.each do |user| %>
+          <tr>
+            <td><%= link_to user.name, user_path(user.id) %></td> 
+          </tr>
+        <% end %>
+      <% end %>
+    </table>
+  </div>
+
+  <div class = "show_friend" style = "display:none">
+    <table>
+      <tr><p id = "colored_heading"> Friends</p></tr>
+      <% if @friends.empty? %>
+        <td> No Friends </td>
+      <% else %>
+        <% @friends.each do |user| %>
+          <tr>
+            <td><%= link_to User.find(user.friend_id).name, user_path(User.find(user.friend_id).id) %></td> 
+            <td>
+              <% if @user == current_user %>
+                <%= link_to "remove", friendship_path(user), method: :delete, data: { confirm: "Are you sure" } %>
+              <% end %>
+            </td>
+          </tr>
+        <% end %>
+      <% end %>
+    </table>
+  </div>
 </div>
 </center>
+
+<div class = "div_absolute_position">
+  <%= link_to " Go To My profile", user_path(current_user.id),class: "btn btn-primary btn" %>
+</div>
